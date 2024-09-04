@@ -8,7 +8,8 @@ def start():
         <html>
            <body>
                 <h1>web-сервер на flask</h1>
-                <a href='author'>author</a>   
+                <a href='author'>author</a>  
+                <a href='/lab1/oak'>дуб</a> 
            </body>
         </html>'''
 
@@ -25,6 +26,7 @@ def author():
                 <p>Группа: ''' + group + '''</p>
                 <p>Факультет: ''' + faculty + '''</p>
                 <a href='web'>web</a>
+                <a href='/lab1/oak'>дуб</a>
            </body>
         </html>'''
 
@@ -36,7 +38,7 @@ def oak():
 <html>
     <body>
         <h1>Дуб</h1>
-        <img src="''' + path + '''">   
+        <img src="''' + path + '''">  
     </body>
 </html>
 '''
