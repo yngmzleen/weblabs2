@@ -72,3 +72,10 @@ def created():
     </body>
 </html>
 ''', 201
+
+
+app = Flask(__name__)
+
+@app.errorhandler(404)
+def not_found(err):
+    return 'Нет такой страницы', 404
