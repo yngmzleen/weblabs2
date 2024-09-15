@@ -4,7 +4,19 @@ app = Flask(__name__)
 
 @app.errorhandler(404)
 def not_found(err):
-    return 'Нет такой страницы', 404
+    path = url_for("static", filename = "404.png")
+    style = url_for("static", filename = "lab1.css")
+    return '''
+<!doctype html>
+<html>
+<head>
+    <link rel = "stylesheet" href="''' + style +'''"
+</head>
+    <body>
+        <img src="''' + path + '''" class="full-screen-image">
+    </body>
+</html>
+''', 404
 
 @app.route('/')
 @app.route('/index')
@@ -88,7 +100,7 @@ def oak():
     <link rel = "stylesheet" href="''' + style +'''"
     <body>
         <h1>Дуб необходимо сажать на хорошо освещенном месте. Лучше избегать тяжелых глинистых почв или песчаных участков. Важно учесть размеры взрослого дуба и предусмотреть пространство его развития. Рекомендуемое расстояние от других деревьев или строений – 10-15 метров.</h1>
-        <img src="''' + path + '''">
+        <img src="''' + path + '''" class="oak-image">
     </body>
 </html>
 '''

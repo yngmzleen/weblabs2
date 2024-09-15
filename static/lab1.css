@@ -1,10 +1,22 @@
 body {
-    background-color: rgb(236, 240, 211);
+    background-color: rgb(236, 222, 240);
     color: rgb(75, 75, 75);
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-img {
+.full-screen-image {
+    width: 900px;
+    height: 500px;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    position: relative;
+    left: 530px;
+    top: 150px;
+    background-color: black;
+}
+
+.oak-image {
     width: 800px;
     height: 400px;
     display: flex; 
