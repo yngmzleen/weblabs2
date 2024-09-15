@@ -6,7 +6,7 @@ def not_found(err):
     return 'Нет такой страницы', 404
 
 @app.route('/')
-@app.route('/web')
+@app.route('/lab1/web')
 def start():
     return '''<!doctype html>
         <html>
@@ -20,7 +20,7 @@ def start():
             'Content-type': 'text/plain; charset=utf-8'
                           }
 
-@app.route('/author')
+@app.route('/lab1/author')
 def author():
     name = 'Иванов Егор Владиславович'
     group = 'ФБИ-22'
@@ -75,9 +75,9 @@ def reset_counter():
     count = 0
     return redirect(url_for('counter'))
 
-@app.route('/info')
+@app.route('/lab1/info')
 def info():
-    return redirect('/author')
+    return redirect('/lab1/author')
 
 @app.route('/lab1/created')
 def created():
