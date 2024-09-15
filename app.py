@@ -1,4 +1,5 @@
 from flask import Flask, url_for, redirect
+
 app = Flask(__name__)
 
 @app.errorhandler(404)
@@ -6,6 +7,24 @@ def not_found(err):
     return 'Нет такой страницы', 404
 
 @app.route('/')
+@app.route('/index')
+def index():
+    style = url_for("static", filename = "lab1.css")
+    return '''<!doctype html>
+        <html>
+        <head>
+            <link rel = "stylesheet" href="''' + style +'''"
+            <title>НГТУ, ФБ, Лабораторные работы</title>
+        </head>
+           <header>
+                НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
+           </header>
+           <body>
+                <a href='/lab1'>Первая лабораторная</a>
+           </body>
+           <footer>Иванов Егор Владиславович, ФБИ-22, 3 курс, 2024</footer>
+        </html>''', 200
+
 @app.route('/lab1/web')
 def start():
     return '''<!doctype html>
@@ -51,6 +70,7 @@ def oak():
     </body>
 </html>
 '''
+
 count = 0
 
 @app.route('/lab1/counter')
@@ -91,4 +111,5 @@ def created():
 </html>
 ''', 201
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
