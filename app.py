@@ -169,5 +169,24 @@ def error_405():
 def error_418():
     return "I'm a teapot", 418
 
+@app.route('/trigger_error')
+def trigger_error():
+    return 1 / 0
+
+@app.errorhandler(500)
+def internal_error(error):
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>Ошибка сервера</title>
+    </head>
+    <body>
+        <h1>Произошла ошибка на сервере</h1>
+        <p>Пожалуйста, попробуйте позже.</p>
+    </body>
+</html>
+''', 500
+
 if __name__ == '__main__':
     app.run(debug=True)
