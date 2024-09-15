@@ -55,6 +55,27 @@ def lab1():
                     веб-приложений, сознательно предоставляющих лишь самые базовые возможности.
                 </p>
                 <a href="/">Главная страница</a>
+                <h2>Список роутов</h2>
+                <ul>
+                    <li><a href="/">Главная страница</a></li>
+                    <li><a href="/index">Главная страница (index)</a></li>
+                    <li><a href="/lab1">Первая лабораторная</a></li>
+                    <li><a href="/lab1/web">Web</a></li>
+                    <li><a href="/lab1/author">Автор</a></li>
+                    <li><a href="/lab1/oak">Дуб</a></li>
+                    <li><a href="/lab1/counter">Счетчик</a></li>
+                    <li><a href="/lab1/reset_counter">Сброс счетчика</a></li>
+                    <li><a href="/lab1/info">Информация</a></li>
+                    <li><a href="/lab1/created">Создано успешно</a></li>
+                    <li><a href="/error/400">Ошибка 400</a></li>
+                    <li><a href="/error/401">Ошибка 401</a></li>
+                    <li><a href="/error/402">Ошибка 402</a></li>
+                    <li><a href="/error/403">Ошибка 403</a></li>
+                    <li><a href="/error/405">Ошибка 405</a></li>
+                    <li><a href="/error/418">Ошибка 418</a></li>
+                    <li><a href="/trigger_error">Триггер ошибки</a></li>
+                    <li><a href="/heavy_metal">Тяжелый металл</a></li>
+                </ul>
            </body>
            <footer>Иванов Егор Владиславович, ФБИ-22, 3 курс, 2024</footer>
         </html>''', 200
