@@ -171,6 +171,7 @@ def error_418():
 
 @app.route('/trigger_error')
 def trigger_error():
+    # Вызываем ошибку деления на ноль
     return 1 / 0
 
 @app.errorhandler(500)
@@ -187,6 +188,47 @@ def internal_error(error):
     </body>
 </html>
 ''', 500
+
+@app.route('/heavy_metal')
+def heavy_metal():
+    path = url_for("static", filename = "heavymetal.jpg")
+    style = url_for("static", filename = "lab1.css")
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel = "stylesheet" href="''' + style +'''"
+        <title>Альбом: Heavy Metal 2</title>
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Da Vinci</h1>
+        <p>
+            Столько tooties, tooties, tooties, нет…
+        </p>
+        <p>
+            Столько-столько tooties, tooties, tooties, нет… 
+        </p>
+        <p>
+            Столько tooties, столько tooties, tooties, tooties, нет
+            Я их не запомню
+        </p>
+        <p>
+            Столько tooties, столько tooties, tooties, tooties, нет
+        </p>
+        <img src="''' + path + '''" alt="Heavy Metal">
+    </body>
+</html>
+''', 200, {
+    'Content-Language': 'ru',
+    'X-Custom-Header-1': 'HeavyMetal2',
+    'X-Custom-Header-2': 'RR'
+}
 
 if __name__ == '__main__':
     app.run(debug=True)
