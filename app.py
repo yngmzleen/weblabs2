@@ -251,5 +251,13 @@ def heavy_metal():
     'X-Custom-Header-2': 'RR'
 }
 
+@app.route('/lab2/a/')
+def a():
+    return 'ok'
+
+@app.route('/lab2/a')
+def a2():
+    return 'okokokok'
+
 if __name__ == '__main__':
     app.run(debug=True)
