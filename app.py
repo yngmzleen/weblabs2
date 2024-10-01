@@ -399,3 +399,15 @@ books = [
 @app.route('/lab2/books')
 def show_books():
     return render_template('books.html', books=books)
+
+characters = [
+    {"name": "Абрамс", "description": "Рвётся в ближний бой.", "image": "abrams.png"},
+    {"name": "Мираж", "description": "Совершает точные выстрелы и ловит убегающих врагов.", "image": "mirage.png"},
+    {"name": "Серый Коготь", "description": "Точно стреляет издалека.", "image": "talon.png"},
+    {"name": "Виндикта", "description": "Самый тихий и смертоносный снайпер.", "image": "vindicta.png"},
+    {"name": "Фантом", "description": "Смертоносная охотница за головами.", "image": "wraith.png"}
+]
+
+@app.route('/lab2/deadlock')
+def deadlock():
+    return render_template('deadlock.html', characters=characters)

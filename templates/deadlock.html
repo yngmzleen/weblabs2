@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block lab %}Персонажи игры Deadlock{% endblock %}
+
+{% block main %}
+    <h1>Персонажи игры Deadlock</h1>
+    <div class="characters">
+    {% for character in characters %}
+        <div class="character">
+            <img src="{{ url_for('static', filename=character.image) }}" alt="{{ character.name }}">
+            <h2>{{ character.name }}</h2>
+            <p>{{ character.description }}</p>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
