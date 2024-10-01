@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 2{% endblock %}
+
+{% block main %}
+    <h1>Список книг Стивена Кинга</h1>
+    <ul>
+    {% for book in books %}
+        <li>
+            <strong>Автор:</strong> {{ book.author }}<br>
+            <strong>Название:</strong> {{ book.title }}<br>
+            <strong>Жанр:</strong> {{ book.genre }}<br>
+            <strong>Количество страниц:</strong> {{ book.pages }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

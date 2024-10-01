@@ -382,3 +382,20 @@ def calc_redirect():
 @app.route('/lab2/calc/<int:a>')
 def calc_a_redirect(a):
     return redirect(f'/lab2/calc/{a}/1')
+
+books = [
+    {"author": "Стивен Кинг", "title": "Кэрри", "genre": "Ужасы", "pages": 199},
+    {"author": "Стивен Кинг", "title": "Сияние", "genre": "Ужасы", "pages": 447},
+    {"author": "Стивен Кинг", "title": "Мизери", "genre": "Триллер", "pages": 368},
+    {"author": "Стивен Кинг", "title": "11/22/63", "genre": "Научная фантастика", "pages": 849},
+    {"author": "Стивен Кинг", "title": "Под куполом", "genre": "Научная фантастика", "pages": 1074},
+    {"author": "Стивен Кинг", "title": "Доктор Сон", "genre": "Ужасы", "pages": 531},
+    {"author": "Стивен Кинг", "title": "Бегущий человек", "genre": "Научная фантастика", "pages": 310},
+    {"author": "Стивен Кинг", "title": "Оно", "genre": "Ужасы", "pages": 1138},
+    {"author": "Стивен Кинг", "title": "Зелёная миля", "genre": "Фэнтези", "pages": 592},
+    {"author": "Стивен Кинг", "title": "Стрелок", "genre": "Фэнтези", "pages": 231}
+]
+
+@app.route('/lab2/books')
+def show_books():
+    return render_template('books.html', books=books)
