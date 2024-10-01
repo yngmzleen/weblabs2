@@ -32,7 +32,8 @@ def index():
                 НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
            </header>
            <body>
-                <a href='/lab1'>Первая лабораторная</a>
+                <li><a href='/lab1'>Первая лабораторная</a></li>
+                <li><a href='/lab2/'>Вторая лабораторная</a></li>
            </body>
            <footer>Иванов Егор Владиславович, ФБИ-22, 3 курс, 2024</footer>
         </html>''', 200
@@ -192,7 +193,6 @@ def error_418():
 
 @app.route('/trigger_error')
 def trigger_error():
-    # Вызываем ошибку деления на ноль
     return 1 / 0
 
 @app.errorhandler(500)
