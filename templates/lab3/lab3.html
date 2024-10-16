@@ -4,9 +4,13 @@
 
 {% block main %}
     <h1>Формы, cookie</h1>
+    {% if name %}
     <div>
-        Привет, <span style="color: {{name_color}}">{{ name }}</span> !
+        Привет, <span style="color: {{name_color}}">{{ name }}</span>, твой возраст {{ age }}!
     </div>
+    {% else %}
+    <div>Привет, аноним</span></div>
+    {% endif %} 
     <div>Список сделанных страниц:</div>
     <ol>
         <li><a href="/lab3/cookie">Куки</a></li>
