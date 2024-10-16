@@ -91,16 +91,16 @@ def example():
         {'name': 'мандарины', 'price': 95},
         {'name': 'манго', 'price': 321}
     ]
-    return render_template('example.html', name=name, group=group, course=course, laba=laba, fruits=fruits)
+    return render_template('/lab2/example.html', name=name, group=group, course=course, laba=laba, fruits=fruits)
 
 @lab2.route('/lab2/')
 def lab():
-    return render_template('lab2.html')
+    return render_template('/lab2/lab2.html')
 
 @lab2.route('/lab2/filters')
 def filters():
     phrase = 'О <b>сколько</b> <u>нам</u> <i>открытий</i> чудных...'
-    return render_template('filter.html', phrase=phrase)
+    return render_template('/lab2/filter.html', phrase=phrase)
 
 @lab2.route('/lab2/calc/<int:a>/<int:b>')
 def calc(a, b):
@@ -149,16 +149,16 @@ books = [
 
 @lab2.route('/lab2/books')
 def show_books():
-    return render_template('books.html', books=books)
+    return render_template('/lab2/books.html', books=books)
 
 characters = [
-    {"name": "Абрамс", "description": "Рвётся в ближний бой.", "image": "abrams.png"},
-    {"name": "Мираж", "description": "Совершает точные выстрелы и ловит убегающих врагов.", "image": "mirage.png"},
-    {"name": "Серый Коготь", "description": "Точно стреляет издалека.", "image": "talon.png"},
-    {"name": "Виндикта", "description": "Самый тихий и смертоносный снайпер.", "image": "vindicta.png"},
-    {"name": "Фантом", "description": "Смертоносная охотница за головами.", "image": "wraith.png"}
+    {"name": "Абрамс", "description": "Рвётся в ближний бой.", "image": "/lab2/abrams.png"},
+    {"name": "Мираж", "description": "Совершает точные выстрелы и ловит убегающих врагов.", "image": "/lab2/mirage.png"},
+    {"name": "Серый Коготь", "description": "Точно стреляет издалека.", "image": "/lab2/talon.png"},
+    {"name": "Виндикта", "description": "Самый тихий и смертоносный снайпер.", "image": "/lab2/vindicta.png"},
+    {"name": "Фантом", "description": "Смертоносная охотница за головами.", "image": "/lab2/wraith.png"}
 ]
 
 @lab2.route('/lab2/deadlock')
 def deadlock():
-    return render_template('deadlock.html', characters=characters)
+    return render_template('/lab2/deadlock.html', characters=characters)
