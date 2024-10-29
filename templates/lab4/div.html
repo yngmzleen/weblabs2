@@ -1,13 +1,20 @@
 {% extends "base.html" %}
 
-{% block lab %}Деление чисел{% endblock%}
+{% block lab %}Арифметические операции{% endblock%}
 
 {% block main %}
     {% if error %}
         {{ error }}
     {% else %}
-    <h1>Деление чисел</h1>
-    {{ x1 }} / {{ x2 }} = {{ result }}
+    <h1>Результат операции</h1>
+    {{ x1 }}
+    {% if operation == 'sum' %} +
+    {% elif operation == 'sub' %} -
+    {% elif operation == 'mul' %} *
+    {% elif operation == 'div' %} /
+    {% elif operation == 'pow' %} ^
+    {% endif %}
+    {{ x2 }} = {{ result }}
     {% endif %}
     <div>
         <a href="/lab4/div-form">Назад</a>

@@ -4,8 +4,16 @@
 
 {% block main %}
     <form method="post" action="/lab4/div">
-        <h1>Деление чисел</h1>
-        <input type="number" name="x1"> / <input type="number" name="x2">
+        <h1>Арифметические операции</h1>
+        <input type="number" name="x1">
+        <select name="operation">
+            <option value="sum">+</option>
+            <option value="sub">-</option>
+            <option value="mul">*</option>
+            <option value="div">/</option>
+            <option value="pow">^</option>
+        </select>
+        <input type="number" name="x2">
         <input type="submit" value="=">
     </form>
 {% endblock %}
