@@ -68,3 +68,116 @@ price = 0
 def success():
     global price
     return render_template('/lab3/success.html', price=price)
+
+@lab3.route('/lab3/settings')
+def settings():
+        color = request.form.get('color')
+        if color:
+            resp = make_response(redirect('/lab3/settings'))
+            resp.set_cookie('color', color)
+            return resp
+        
+        backgroundcolor = request.form.get('backgroundcolor')
+        if backgroundcolor:
+            resp = make_response(redirect('/lab3/settings'))
+            resp.set_cookie('backgroundcolor', backgroundcolor)
+            return resp
+        
+        fontsize = request.form.get('fontsize')
+        if fontsize:
+            resp = make_response(redirect('/lab3/settings'))
+            resp.set_cookie('backgroundcolor', fontsize)
+            return resp
+        
+        linkcolor = request.form.get('linkcolor')
+        if linkcolor:
+            resp = make_response(redirect('/lab3/settings'))
+            resp.set_cookie('linkcolor', linkcolor)
+            return resp
+        
+        color = request.cookies.get('color')
+        backgroundcolor = request.cookies.get('backgroundcolor')
+        fontsize = request.cookies.get('fontsize')
+        linkcolor = request.cookies.get('linkcolor')
+        resp = make_response(render_template('lab3/settings.html', color=color, backgroundcolor=backgroundcolor,fontsize=fontsize, linkcolor=linkcolor))
+        return resp
+
+@lab3.route('/lab3/formTrain')
+def formTrain():
+    ticketCost = 0
+    fio = request.args.get('fio')
+    place = request.args.get('place')
+    linen = request.args.get('linen')
+    luggage = request.args.get('luggage')
+    age = request.args.get('age')
+    start = request.args.get('start')
+    end = request.args.get('end')
+    date = request.args.get('date')
+    insurance = request.args.get('insurance')
+    errors = {}
+    argsNames = [fio, age, start, end, date]
+
+    check = False
+
+    if fio == '':
+        errors['fio'] = 'Заполните поле!'
+    else:
+        errors['fio'] = ''
+
+    if age == '':
+        errors['age'] = 'Заполните поле!'
+    elif  type(age) == str and (int(age) < 1 or int(age) > 120):
+        errors['age'] = 'Возраст должен быть от 1 до 120 лет!'
+    else:
+        errors['age'] = ''
+
+    if start == '':
+        errors['start'] = 'Заполните поле!'
+    else:
+        errors['start'] = ''
+
+    if end == '':
+        errors['end'] = 'Заполните поле!'
+    else:
+        errors['end'] = ''
+
+    if date == '':
+        errors['date'] = 'Заполните поле!'
+    else:
+        errors['date'] = ''
+
+    if all(argsNames) and (int(age) >= 0 and int(age) <= 120):
+        check = True
+
+    if check == True:
+        if int(age) > 17:
+            ticketCost += 1000
+        else:
+            ticketCost += 700
+
+        if place == 'нижняя':
+            ticketCost += 100
+        elif place == 'нижняя боковая':
+            ticketCost += 100
+        
+        if linen is not None:
+            ticketCost += 75
+        
+        if luggage is not None:
+            ticketCost += 250
+        
+        if insurance is not None:
+            ticketCost += 150
+        
+    return render_template('lab3/formTrain.html', fio=fio, place=place, linen=linen, luggage=luggage,
+                        age=age, start=start, end=end, date=date, insurance=insurance, errors=errors,
+                        argsNames=argsNames, check=check, ticketCost=ticketCost)
+
+@lab3.route('/lab3/delete_cookies')
+def deletecookies():
+    resp = make_response(redirect('/lab3/settings'))
+    resp.delete_cookie('color')
+    resp.delete_cookie('backgroundcolor')
+    resp.delete_cookie('fontsize')
+    resp.delete_cookie('linkcolor')
+    return resp
