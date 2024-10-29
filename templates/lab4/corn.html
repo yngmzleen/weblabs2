@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 4{% endblock%}
+
+{% block main %}
+    {% if checked %}
+        <div class="order">
+            <div>
+                Вы заказали {{ amount }}т. {{ corn }} на сумму {{ price }}руб.
+            </div>
+            {% if sale %}
+                Применена скидка 10%
+            {% endif %}
+            <div>
+                <a href="/lab4/corns">Назад</a>
+            </div>
+        </div>
+    {% else %}
+        <form method="post" class="order">
+            <h1>Заказ зерна</h1>
+            <label for="corns">Выберете зерна</label>
+            <div>
+                <select name="corns">
+                    <option value="ячмень" {{corn == 'ячмень' and 'selected'}}>ячмень</option>
+                    <option value="овес" {{corn == 'овес' and 'selected'}}>овес</option>
+                    <option value="пшеница" {{corn == 'пшеница' and 'selected'}}>пшеница</option>
+                    <option value="рожь" {{corn == 'рожь' and 'selected'}}>рожь</option>
+                </select>
+            </div>
+            <div>
+                <label for="amount">Введите количество зерна в тоннах!</label>
+            </div>
+            <div>
+            <input type="number" name="amount">
+            </div>
+            <button type="submit">Оформить заказ</button>
+            <div class="error">
+                {{error}}
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

@@ -137,3 +137,39 @@ def fridge():
         return render_template('/lab4/fridge.html', output=output, temperature=temperature, snowflakes=snowflakes)
 
     return render_template('/lab4/fridge.html', output=output, temperature=temperature, snowflakes=snowflakes)
+
+@lab4.route('/lab4/corns', methods=['GET', 'POST'])
+def corns():
+    error = ''
+    checked = False
+    sale = False
+    price = 0
+    corn = request.form.get('corns')
+    amount = request.form.get('amount')
+    
+    if request.method == 'POST':
+        if amount == '':
+            error = 'введите количество'
+        elif int(amount) <= 0:
+            error = 'введите верное количество'
+        elif int(amount) > 500:
+            error = 'такого объёма сейчас нет в наличии.'
+        elif corn == 'ячмень':
+            price = 12345 * int(amount)
+            checked = True
+        elif corn == 'овес':
+            price = 8522 * int(amount)
+            checked = True
+        elif corn == 'пшеница':
+            price = 8722 * int(amount)
+            checked = True
+        elif corn == 'рожь':
+            price = 14111 * int(amount)
+            checked = True
+    
+    if amount and int(amount) > 50:
+        sale = True
+        if sale:
+            price = price - price * 0.1
+    
+    return render_template('/lab4/corn.html', error=error, checked=checked, price=price, corn=corn, amount=amount, sale=sale)
