@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 4{% endblock %}
+
+{% block main %}
+<link rel="stylesheet" href="{{ url_for('static', filename='lab4/style.css') }}">
+
+<img src="{{ url_for('static', filename='lab4/background.jpg') }}" alt="Background Image" class="background-image">
+
+<form method="post" class="order">
+    <div>
+        <label for="temperature">Введите температуру:</label>
+        <input type="number" id="temperature" name="temperature" value="{{ temperature }}">
+    </div>
+    <div>
+        <button type="submit" name="submit">Задать температуру</button>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        {{ output }}
+        {% for _ in range(snowflakes) %}
+            &#10052;
+        {% endfor %}
+    </div>
+</form>
+{% endblock %}
