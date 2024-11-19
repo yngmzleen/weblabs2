@@ -1,0 +1,52 @@
+/* lab5.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0e6f6; /* Светло-фиолетовый фон */
+}
+
+header {
+    background-color: #6a1b9a; /* Темно-фиолетовый цвет для шапки */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+h1 {
+    color: #6a1b9a; /* Темно-фиолетовый цвет для заголовка */
+}
+
+.link-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.link-container a {
+    text-decoration: none;
+    color: #6a1b9a; /* Темно-фиолетовый цвет для ссылок */
+    background-color: #e1bee7; /* Светло-фиолетовый цвет для фона ссылок */
+    padding: 10px;
+    border: 1px solid #ba68c8; /* Фиолетовый цвет для границы ссылок */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.link-container a:hover {
+    background-color: #ce93d8; /* Фиолетовый цвет для фона при наведении */
+}
+
+.link-container div {
+    text-align: center;
+}
+
+.link-container div:last-child {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #6a1b9a; /* Темно-фиолетовый цвет для текста "Anonymous" */
+}
