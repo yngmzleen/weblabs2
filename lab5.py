@@ -36,3 +36,37 @@ def register():
     cur.close()
     conn.close()
     return render_template('lab5/success.html', login=login)
+
+@lab5.route('/lab5/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('lab5/login.html')
+    
+    login = request.form.get('login')
+    password = request.form.get('password')
+    if not (login and password):
+        return render_template('lab5/login.html', error='Заполните все поля')
+    
+    conn = psycopg2.connect(
+        host = 'localhost',
+        database = 'egor_ivanov_knowledge_base',
+        user = 'postgres',
+        password = '2004egor'
+    )
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    cur.execute(f"SELECT * FROM users WHERE login='{login}';")
+    user = cur.fetchone()
+    if not user:
+        cur.close()
+        conn.close()
+        return render_template('lab5/login.html', error="Пользователь и/или пароль введены неверно!")
+    
+    if user['password'] != password:
+        cur.close()
+        conn.close()
+        return render_template('lab5/login.html', error="Пользователь и/или пароль введены неверно!")
+    
+    session['login'] = login
+    cur.close()
+    conn.close()
+    return render_template('lab5/success_login.html', login=login)
