@@ -12,7 +12,7 @@ def lab():
     return render_template('lab5/lab5.html', login=session.get('login'))
 
 def db_connect():
-    if current_app.config['DB_TYPE'] == 'postgres':
+    if current_app.config['DB_TYPE'] == 'sqlite':
         conn = psycopg2.connect(
             host = '127.0.0.1',
             port = '5432',
