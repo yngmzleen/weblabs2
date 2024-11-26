@@ -3,6 +3,7 @@ import psycopg2
 from os import path, close
 import sqlite3
 from psycopg2.extras import RealDictCursor
+from werkzeug.security import check_password_hash, generate_password_hash
 
 lab5 = Blueprint('lab5', __name__)
 
@@ -41,7 +42,8 @@ def register():
         db_close(conn, cur)
         return render_template('lab5/register.html', error='Данное имя уже занято')
     
-    cur.execute(f"INSERT INTO users (login, password) VALUES ('{login}', '{password}');")
+    password_hash = generate_password_hash(password)
+    cur.execute(f"INSERT INTO users (login, password) VALUES ('{login}', '{password_hash}');")
 
     db_close(conn, cur)
     return render_template('lab5/success.html', login=login)
@@ -64,7 +66,7 @@ def login():
         db_close(conn, cur)
         return render_template('lab5/login.html', error="Пользователь и/или пароль введены неверно!")
     
-    if user['password'] != password:
+    if not check_password_hash(user['password'], password):
         db_close(conn, cur)
         return render_template('lab5/login.html', error="Пользователь и/или пароль введены неверно!")
     
