@@ -29,7 +29,7 @@ def register():
     cur = conn.cursor()
     cur.execute(f"SELECT login FROM users WHERE login='{login}';")
     if cur.fetchone():
-        return render_template('lab5/register.html', error='Кто-то уже занял такое имя!')
+        return render_template('lab5/register.html', error='Данное имя уже занято')
     
     cur.execute(f"INSERT INTO users (login, password) VALUES ('{login}', '{password}');")
     conn.commit()
