@@ -15,6 +15,7 @@ def db_connect():
     if current_app.config['DB_TYPE'] == 'postgres':
         conn = psycopg2.connect(
             host = '127.0.0.1',
+            port = '5432',
             database = 'egor_ivanov_knowledge_base',
             user = 'egor_ivanov_knowledge_base',
             password = '2004'
