@@ -3,10 +3,15 @@
 {% block main %}
     <div class="article-container">
         <h1>Все статьи</h1>
-        {% for article in articles %}
-            <h2 class="article-title">{{ article['title'] }}</h2>
-            <blockquote class="article-text">{{ article['article_text'] }}</blockquote>
-        {% endfor %}
+        {% if articles %}
+            {% for article in articles %}
+                <h2 class="article-title">{{ article['title'] }}</h2>
+                <blockquote class="article-text">{{ article['article_text'] }}</blockquote>
+            {% endfor %}
+        {% else %}
+        <h2 class="article-title">У вас пока нет статей!</h2>
+        <blockquote class="article-text"><a href="/lab5/create">Напишите первую статью</a>!</blockquote>
+        {% endif %}
         <a href="/lab5/">Назад</a>
     </div>
 {% endblock %}
