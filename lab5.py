@@ -126,19 +126,61 @@ def create():
 @lab5.route('/lab5/list')
 def list():
     login = session.get('login')
-    if not login:
-        return redirect('/lab5/login')
-    
+
     conn, cur = db_connect()
+
+    sqllite = False
+    is_admin = False
+
+    if login == 'admin':
+        is_admin = True
+    user_id = None
+    if login:
+        if current_app.config['DB_TYPE'] == 'postgres':
+            cur.execute("SELECT id FROM users WHERE login = %s;", (login,))
+        else:
+            cur.execute("SELECT id FROM users WHERE login = ?;", (login,))
+            sqllite = True
+
+        user = cur.fetchone()
+        user_id = user['id'] if user else None
+
     if current_app.config['DB_TYPE'] == 'postgres':
-        cur.execute("SELECT id FROM users WHERE login=%s;", (login, ))
+        query = """
+            SELECT articles., users.login as creator_login 
+            FROM articles 
+            JOIN users ON articles.user_id = users.id
+        """
     else:
-        cur.execute("SELECT id FROM users WHERE login=?;", (login, ))
-    login_id = cur.fetchone()['id']
+        query = """
+            SELECT articles., users.login as creator_login 
+            FROM articles 
+            JOIN users ON articles.login_id = users.id
+        """
+    conditions = []
+    params = []
+
+    if login:
+        if current_app.config['DB_TYPE'] == 'postgres':
+            conditions.append("(articles.is_public = TRUE OR articles.user_id = %s)")
+        else:
+            conditions.append("(articles.is_public = TRUE OR articles.login_id = ?)")
+        params.append(user_id)
+    else:
+        conditions.append("articles.is_public = TRUE")
+
+    if conditions:
+        query += " WHERE " + " AND ".join(conditions)
+
+    query += " ORDER BY articles.is_favorite DESC, articles.id DESC;"
+
     if current_app.config['DB_TYPE'] == 'postgres':
-        cur.execute("SELECT * FROM articles WHERE user_id=%s;", (login_id, ))
+        cur.execute(query, tuple(params) if params else ())
     else:
-        cur.execute("SELECT * FROM articles WHERE user_id=?;", (login_id, ))
+        cur.execute(query, tuple(params) if params else ())
+
     articles = cur.fetchall()
+
     db_close(conn, cur)
-    return render_template('/lab5/articles.html', articles=articles)
+
+    return render_template('/lab5/articles.html', articles=articles, filter_type='all', sqllite=sqllite, is_admin=is_admin)
