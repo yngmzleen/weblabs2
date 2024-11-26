@@ -8,7 +8,6 @@ from lab4 import lab4
 from lab5 import lab5
 
 app = Flask(__name__)
-app.config.from_object(Config)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'секретный-секрет')
 app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'sqlite')
