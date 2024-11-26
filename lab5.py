@@ -12,13 +12,20 @@ def lab():
     return render_template('lab5/lab5.html', login=session.get('login'))
 
 def db_connect():
-    conn = psycopg2.connect(
-        host = 'localhost',
-        database = 'egor_ivanov_knowledge_base',
-        user = 'postgres',
-        password = '2004egor'
-    )
-    cur = conn.cursor(cursor_factory=RealDictCursor)
+    if current_app.config['DB_TYPE'] == 'postgres':
+        conn = psycopg2.connect(
+            host = '::1',
+            database = 'osyagin_ivan_knowledge_base',
+            user = 'osyagin_ivan_knowledge_base',
+            password = 'KAKASHKI123'
+        )
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        dir_path = path.dirname(path.realpath(__file__))
+        db_path = path.join(dir_path, 'database.db')
+        conn = sqlite3.connect(db_path)
+        conn.row_factory = sqlite3.Row
+        cur = conn.cursor()
     return conn, cur
 def db_close(conn, cur):
     conn.commit()
