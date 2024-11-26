@@ -14,10 +14,10 @@ def lab():
 def db_connect():
     if current_app.config['DB_TYPE'] == 'postgres':
         conn = psycopg2.connect(
-            host = '::1',
-            database = 'osyagin_ivan_knowledge_base',
-            user = 'osyagin_ivan_knowledge_base',
-            password = 'KAKASHKI123'
+            host = 'localhost',
+            database = 'egor_ivanov_knowledge_base',
+            user = 'egor_ivanov_knowledge_base',
+            password = '2004'
         )
         cur = conn.cursor(cursor_factory=RealDictCursor)
     else:
