@@ -149,22 +149,22 @@ def list():
         query = """
             SELECT articles.id, articles.title, articles.article_text, articles.is_favorite, articles.is_public, articles.likes, users.login as creator_login 
             FROM articles 
-            JOIN users ON articles.user_id = users.id
+            JOIN users ON articles.login_id = users.id
         """
     else:
         query = """
             SELECT articles.id, articles.title, articles.article_text, articles.is_favorite, articles.is_public, articles.likes, users.login as creator_login 
             FROM articles 
-            JOIN users ON articles.user_id = users.id
+            JOIN users ON articles.login_id = users.id
         """
     conditions = []
     params = []
 
     if login:
         if current_app.config['DB_TYPE'] == 'postgres':
-            conditions.append("(articles.is_public = TRUE OR articles.user_id = %s)")
+            conditions.append("(articles.is_public = TRUE OR articles.login_id = %s)")
         else:
-            conditions.append("(articles.is_public = TRUE OR articles.user_id = ?)")
+            conditions.append("(articles.is_public = TRUE OR articles.login_id = ?)")
         params.append(user_id)
     else:
         conditions.append("articles.is_public = TRUE")
