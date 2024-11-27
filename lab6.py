@@ -36,7 +36,7 @@ def db_close(conn, cur):
     cur.close()
     conn.close()
 
-@lab6.route('/lab5/register', methods=['GET', 'POST'])
+@lab6.route('/lab6/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
         return render_template('lab6/lab6_register.html')
@@ -65,7 +65,7 @@ def register():
     db_close(conn, cur)
     return render_template('lab6/lab6_success.html', login=login)
 
-@lab6.route('/lab5/login', methods=['GET', 'POST'])
+@lab6.route('/lab6/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('lab6/lab6_login.html')
