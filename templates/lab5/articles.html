@@ -2,20 +2,16 @@
 {% block lab %}Лабораторная работа 5{% endblock %}
 {% block main %}
     <div class="article-container">
-        <h1 class="page-title">Все статьи</h1>
+        <h1>Все статьи</h1>
         {% if articles %}
             {% for article in articles %}
-                <div class="article">
-                    <h2 class="article-title">{{ article['title'] }}</h2>
-                    <blockquote class="article-text">{{ article['article_text'] }}</blockquote>
-                </div>
+            <h2 class="article-title">{{ article['title'] }}</h2>
+            <blockquote class="article-text">{{ article['article_text'] }}</blockquote>
             {% endfor %}
         {% else %}
-            <div class="no-articles">
-                <h2 class="article-title">У вас пока нет статей!</h2>
-                <blockquote class="article-text"><a href="/lab5/create">Напишите первую статью</a>!</blockquote>
-            </div>
+        <h2 class="article-title">У вас пока нет статей!</h2>
+        <blockquote class="article-text"><a href="/lab5/create">Напишите первую статью</a>!</blockquote>
         {% endif %}
-        <a href="/lab5/" class="back-link">Назад</a>
+        <a href="/lab5/">Назад</a>
     </div>
 {% endblock %}

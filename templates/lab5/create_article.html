@@ -3,25 +3,27 @@
 {% block lab %}Лабораторная работа 5{% endblock %}
 
 {% block main %}
-    <div class="article-container">
-        <h1 class="page-title">Создание статьи</h1>
+    <h1>Создание статьи</h1>    
 
-        <form method="post" class="create-article-form">
-            <div class="form-group">
-                <label for="title">Название статьи:</label>
-                <input type="text" id="title" maxlength="50" name="title" required class="form-control">
+        <form method="post">
+            <div>
+                <label>
+                    Название статьи:
+                    <input type="text" maxlength="50" name="title" required>
+                </label>
             </div>
             
-            <div class="form-group">
-                <label for="article_text">Текст статьи:</label>
-                <textarea id="article_text" name="article_text" required class="form-control"></textarea>
+            <div>
+                <label>
+                    <textarea name="article_text" required></textarea>
+                </label>
             </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Готово</button>
+            <div>
+                <button type="submit">Готово</button>
             </div>
         </form>
-        <a href="/lab5/" class="back-link">Назад</a>
+        <a href="/lab5/">Назад</a>
         <div class="error">
             {{ error }}
         </div>

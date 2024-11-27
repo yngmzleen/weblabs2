@@ -16,6 +16,8 @@ for i in range(1, 11):
     offices.append({'number': i, 'tenant': ''})
 
 def db_connect():
+
+    
     if current_app.config['DB_TYPE'] == 'postgres':
         conn = psycopg2.connect(
             host = '127.0.0.1',
