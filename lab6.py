@@ -13,48 +13,68 @@ def lab():
 def api():
     data = request.json
     id = data['id']
+    result = {
+        'jsonrpc': '2.0',
+        'id': id
+    }   
     if data['method'] == 'info':
-        return {
-            'jsonrpc': '2.0',
-            'result': offices,
-            'id': id
-        }
+        result['result'] = offices
+        return result
     login = session.get('login')
     if not login:
-        return {
-            'jsonrpc': '2.0',
-            'error': {
-                'code': 1,
-                'message': 'Unauthorized'
-            },
-            'id': id
+        result['error'] = {
+            'code': 1,
+            'message': 'Unauthorized'
         }
+        return result
     
     if data['method'] == 'booking':
         office_number = data['params']
         for office in offices:
             if office['number'] == office_number:
                 if office['tenant'] != '':
-                    return {
-                        'jsonrpc': '2.0',
-                        'error': {
-                            'code': 2,
-                            'message': 'Already booked'
-                        },
-                        'id': id
+                    result['error'] = {
+                        'code': 2,
+                        'message': 'Already booked'
                     }
+                    return result
                 
                 office['tenant'] = login
-                return {
-                    'jsonrpc': '2.0',
-                    'result': 'success',
-                    'id': id
-                }
-    return {
-        'jsonrpc': '2.0',
-        'error': {
+                result['result'] = 'success'
+                return result
+        result['error'] = {
             'code': -32601,
             'message': 'Method not found'
-        },
-        'id': id
+ }
+        return result
+    
+    if data['method'] == 'cancel':
+        office_number = data['params']
+        for office in offices:
+            if office['number'] == office_number:
+                if office['tenant'] == '':
+                    result['error'] = {
+                        'code': 3,
+                        'message': 'Office not booked'
+                    }
+                    return result
+                if office['tenant'] != login:
+                    result['error'] = {
+                        'code': 4,
+                        'message': "You didn't book this office"
+                    }
+                    return result
+                office['tenant'] = ''
+                result['result'] = 'success'
+                return result
+        result['error'] = {
+            'code': -32601,
+            'message': 'Method not found'
+        }
+        return result
+    
+    result['error'] = {
+        'code': -32601,
+        'message': 'Method not found'
     }
+    return result
