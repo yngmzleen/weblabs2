@@ -73,6 +73,9 @@ def add_film():
     film = request.get_json() 
     if not film or not all(k in film for k in ('title', 'title_ru', 'year', 'description')):
         return abort(400, "Invalid film data")  
-    
+    if film['description'] == '':
+        return {'description': 'Заполните описание!'}, 400
+    if film['title_ru'] and not film['title']:
+        film['title'] = film['title_ru']
     films.append(film) 
     return {'id': len(films) - 1}, 201  

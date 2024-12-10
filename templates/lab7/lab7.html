@@ -4,21 +4,98 @@
 <script src="{{ url_for('static', filename='lab7/main.js') }}"></script>
 <style>
     .modal {
-    z-index: 100;
-    box-shadow: 3px 3px 5px black;
-    background: white;
-    width: 400px;
-    left: 50%;
-    top: 220px;
-    margin-left: -220px;
-    position: absolute;
-    padding: 20px;
-    border-radius: 20px;
-    display: none;
+        z-index: 100;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        background: white;
+        width: 400px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: fixed;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
+        font-family: Arial, sans-serif;
+    }
+
+    .modal h2 {
+        margin-top: 0;
+        font-size: 20px;
+        color: #333;
+    }
+
+    .modal label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .modal input[type="text"],
+    .modal input[type="number"],
+    .modal textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .modal textarea {
+        resize: vertical;
+        height: 100px;
+    }
+
+    .modal .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
     }
 
     .error-message {
         color: red;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        color: #333;
+    }
+
+    button {
+        padding: 8px 12px;
+        margin-right: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #ddd;
+    }
+
+    h1 {
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin-bottom: 20px;
     }
 </style>
 
