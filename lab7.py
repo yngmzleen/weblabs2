@@ -63,6 +63,8 @@ def put_film(id):
         return abort(404)
     else:
         film = request.get_json()
+        if film['description'] == '':
+            return {'description': 'Заполните описание!'}, 400
         films[id] = film
         return films[id]
     
