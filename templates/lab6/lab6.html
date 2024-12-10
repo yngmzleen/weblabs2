@@ -26,11 +26,11 @@
 
                 const office_list = data.result;
                 const ul = document.getElementById('office-list');
-                ul.innerHTML = '';
+                ul.innerHTML = ''; // Очищаем список перед обновлением
                 mounthlyPriceCounter = 0; 
 
                 office_list.forEach(office => {
-                    const li = document.createElement('li');
+                    const li = document.createElement('li'); // Создаем новый элемент li
 
                     if (office.tenant) {
                         li.innerText = `${office.number}: Занят`;
@@ -41,23 +41,23 @@
                         li.innerText = `${office.number}: Свободен`;
                     }
 
-                    const bookingButton = document.createElement('button');
+                    const bookingButton = document.createElement('button'); // Создаем кнопку "Забронировать"
                     bookingButton.innerText = 'Забронировать';
                     bookingButton.onclick = () => booking(office.number);
                     li.appendChild(bookingButton);
 
                     if (office.tenant) {
-                        const cancelButton = document.createElement('button');
+                        const cancelButton = document.createElement('button'); // Создаем кнопку "Освободить"
                         cancelButton.innerText = 'Освободить';
                         cancelButton.onclick = () => cancelBooking(office.number);
                         li.appendChild(cancelButton);
                     }
 
-                    const price = document.createElement('span');
+                    const price = document.createElement('span'); // Добавляем цену
                     price.innerText = `${office.price} Руб./мес.`;
                     li.appendChild(price);
 
-                    ul.appendChild(li);
+                    ul.appendChild(li); // Добавляем элемент li в список
                 });
 
                 const mountly_price = document.getElementById('mountly-price');
@@ -150,8 +150,21 @@
     </script>
 {% endblock %}
 {% block main %}
+    <div class="container">
+        <h1>Список офисов&#128198;</h1>
+        <ul id="office-list"></ul>
+        <div id="mountly-price"></div>
 
-    <h1>Список офисов</h1>
-    <ul id="office-list"></ul>
-    <div id="mountly-price"></div>
+        {% if not session.get('login') %}
+            <div>
+                <a href="/lab6/login"><button>Войти</button></a>
+                <a href="/lab6/register"><button>Зарегистрироваться</button></a>
+            </div>
+        {% else %}
+            <div>
+                <p>Добро пожаловать, {{ session.get('login') }}!</p>
+                <a href="/lab6/logout"><button>Выйти</button></a>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

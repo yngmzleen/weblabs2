@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block lab %}Авторизация{% endblock %}
+{% block main %}
+    <div class="container">
+        <h1>Авторизация</h1>
+        <form method="POST">
+            <label for="login">Логин:</label>
+            <input type="text" id="login" name="login" required>
+            <br>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Войти</button>
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <a href="/lab6/register">Нет аккаунта? Зарегистрироваться</a>
+    </div>
+{% endblock %}
