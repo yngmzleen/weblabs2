@@ -3,6 +3,8 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_mysqldb import MySQL 
 from db import db
+from db.models import user_data
+from flask_login import LoginManager
 from config import Config
 from lab1 import lab1
 from lab2 import lab2
@@ -28,6 +30,14 @@ app.config['MYSQL_PORT'] = 3306
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://u2939432_egor:2004egor@31.31.196.16/u2939432_default'
 
 db.init_app(app)
+
+login_manager = LoginManager()
+login_manager.login_view = 'lab8.login'
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return user_data.query.get(int(user_id))
 
 app.register_blueprint(lab1)
 app.register_blueprint(lab2)
