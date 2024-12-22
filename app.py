@@ -1,5 +1,8 @@
 from flask import Flask, url_for, redirect, render_template
 import os
+from flask_sqlalchemy import SQLAlchemy
+from flask_mysqldb import MySQL 
+from db import db
 from config import Config
 from lab1 import lab1
 from lab2 import lab2
@@ -11,8 +14,16 @@ from lab8 import lab8
 
 app = Flask(__name__)
 
+mysql = MySQL(app)
+
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'секретный-секрет')
 app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'sqlite')
+
+app.config['MYSQL_HOST'] = '31.31.196.16'
+app.config['MYSQL_USER'] = 'u2939432_egor'
+app.config['MYSQL_PASSWORD'] = '2004egor'
+app.config['MYSQL_DB'] = 'u2939432_default'
+app.config['MYSQL_PORT'] = 3306
 
 app.register_blueprint(lab1)
 app.register_blueprint(lab2)
