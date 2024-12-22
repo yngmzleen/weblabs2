@@ -25,6 +25,10 @@ app.config['MYSQL_PASSWORD'] = '2004egor'
 app.config['MYSQL_DB'] = 'u2939432_default'
 app.config['MYSQL_PORT'] = 3306
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://u2939432_egor:2004egor@31.31.196.16/u2939432_default'
+
+db.init_app(app)
+
 app.register_blueprint(lab1)
 app.register_blueprint(lab2)
 app.register_blueprint(lab3)
