@@ -5,27 +5,26 @@
 {% block main %}
     <h1>Создание статьи</h1>    
 
-        <form method="post">
-            <div>
-                <label>
-                    Название статьи:
-                    <input type="text" maxlength="50" name="title" required>
-                </label>
-            </div>
-            
-            <div>
-                <label>
-                    <textarea name="article_text" required></textarea>
-                </label>
-            </div>
-
-            <div>
-                <button type="submit">Готово</button>
-            </div>
-        </form>
-        <a href="/lab8/">Назад</a>
-        <div class="error">
-            {{ error }}
+    <form method="post">
+        <div>
+            <label>
+                Название статьи:
+                <input type="text" maxlength="50" name="title" required>
+            </label>
         </div>
+        
+        <div>
+            <label>
+                <textarea name="article_text" required></textarea>
+            </label>
+        </div>
+
+        <div>
+            <button type="submit" class="main-button">Готово</button>
+        </div>
+    </form>
+    <a href="/lab8/" class="back-button">Назад</a>
+    <div class="error">
+        {{ error }}
     </div>
 {% endblock %}

@@ -17,11 +17,18 @@
                     Пароль: <input type="password" name="password">
                 </label>
             </div>
-            <button type="submit">Вход</button>
+            
+            <div>
+                <label>
+                    Запомнить меня: <input type="checkbox" name="remember_me">
+                </label>
+            </div>
+            
+            <button type="submit" class="main-button">Вход</button>
         </form>
         <div class="error">
             {{ error }}
         </div>
-        <a href="/lab8/">Назад</a>
+        <a href="/lab8/" class="back-button">Назад</a>
     </div>
 {% endblock %}

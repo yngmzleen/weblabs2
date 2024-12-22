@@ -2,16 +2,24 @@
 {% block lab %}Лабораторная работа 8{% endblock %}
 {% block main %}
     <div class="article-container">
-        <h1>Все статьи</h1>
+        <h1>Список статей</h1>
         {% if articles %}
             {% for article in articles %}
-            <h2 class="article-title">{{ article['title'] }}</h2>
-            <blockquote class="article-text">{{ article['article_text'] }}</blockquote>
+            <div class="article">
+                <h2 class="article-title">{{ article.title }}</h2>
+                <blockquote class="article-text">{{ article.article_text }}</blockquote>
+                <div class="article-actions">
+                    <form action="/lab8/delete/{{ article.id }}" method="post" style="display:inline;">
+                        <button type="submit" class="action-button">Удалить</button>
+                    </form>
+                    <a href="/lab8/edit/{{ article.id }}" class="action-button">Редактировать</a>
+                </div>
+            </div>
             {% endfor %}
         {% else %}
         <h2 class="article-title">У вас пока нет статей!</h2>
         <blockquote class="article-text"><a href="/lab8/create">Напишите первую статью</a>!</blockquote>
         {% endif %}
-        <a href="/lab8/">Назад</a>
+        <a href="/lab8/" class="back-button">Назад</a>
     </div>
 {% endblock %}

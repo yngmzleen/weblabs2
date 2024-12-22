@@ -3,6 +3,7 @@
 {% block lab %}Лабораторная работа 8{% endblock %}
 
 {% block main %}
+    <div class="article-container">
         <h1>Регистрация</h1>
         <form action="/lab8/register" method="post">
             <div>
@@ -16,13 +17,13 @@
                     Пароль: <input type="password" name="password">
                 </label>
             </div>
-            <button type="submit">Зарегистрироваться</button>
+            <button type="submit" class="main-button">Зарегистрироваться</button>
         </form>
         <div class="register-message">
             {% if error %}
             <p style="color: red">{{ error }}</p>
             {% endif %}
         </div>
-        <a href="/lab8/">Назад</a>
+        <a href="/lab8/" class="back-button">Назад</a>
     </div>
 {% endblock %}

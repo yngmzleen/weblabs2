@@ -6,27 +6,29 @@
     <h1>BABR</h1>
     <div class="link-container">
         <div>
-            <a href="/lab8/login">Вход</a>
+            <a href="/lab8/login" class="main-button">Вход</a>
         </div>
         <div>
-            <a href="/lab8/register">Регистрация</a>
+            <a href="/lab8/register" class="main-button">Регистрация</a>
         </div>
         <div>
-            <a href="/lab8/articles">Список статей</a>
+            <a href="/lab8/articles" class="main-button">Список статей</a>
         </div>
         <div>
-            <a href="/lab8/create">Создать статью</a>
+            <a href="/lab8/create" class="main-button">Создать статью</a>
         </div>
         <div>
-            {% if login %}
-                {{ login }}
+            {% if current_user.is_authenticated %}
+            <div>
+                {{ current_user.login }}
+            </div>
             {% else %}
-                Анонимус
+            <div>Аноним</div>
             {% endif %}
         </div>
     </div>
 
     <div>
-        <a href="/lab8/logout">Выйти</a>
+        <a href="/lab8/logout" class="main-button">Выйти</a>
     </div>
 {% endblock %}

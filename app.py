@@ -18,8 +18,9 @@ app = Flask(__name__)
 
 mysql = MySQL(app)
 
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'секретный-секрет')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'secret')
 app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'sqlite')
+app.config['SESSION_COOKIE_DOMAIN'] = 'utf-8'
 
 app.config['MYSQL_HOST'] = '31.31.196.16'
 app.config['MYSQL_USER'] = 'u2939432_egor'
