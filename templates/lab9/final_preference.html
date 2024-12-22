@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 9{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='lab9/lab9.css') }}">
+{% endblock %}
+
+{% block main %}
+    <h1>Что именно вам больше нравится?</h1>
+    <form method="post" class="centered-form">
+        {% if preference == 'tasty' %}
+            <label>
+                <input type="radio" name="final_preference" value="sweet" required> Сладкое
+            </label>
+            <label>
+                <input type="radio" name="final_preference" value="hearty" required> Сытное
+            </label>
+        {% else %}
+            <label>
+                <input type="radio" name="final_preference" value="beautiful" required> Красивое
+            </label>
+            <label>
+                <input type="radio" name="final_preference" value="decorative" required> Лисянчик
+            </label>
+        {% endif %}
+        <button type="submit" class="main-button">Далее</button>
+    </form>
+{% endblock %}

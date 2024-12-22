@@ -7,10 +7,13 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Введите ваше имя</h1>
+    <h1>Что вам больше нравится?</h1>
     <form method="post" class="centered-form">
         <label>
-            Имя: <input type="text" name="name" required>
+            <input type="radio" name="preference" value="tasty" required> Что-то вкусное
+        </label>
+        <label>
+            <input type="radio" name="preference" value="beautiful" required> Что-то красивое
         </label>
         <button type="submit" class="main-button">Далее</button>
     </form>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 9{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='lab9/lab9.css') }}">
+{% endblock %}
+
+{% block main %}
+    <h1>Поздравление</h1>
+    <p>{{ congrats_text }}</p>
+    <p>Вот тебе подарок — {{ gift }}!</p>
+    <div class="gift-images">
+        <img src="{{ url_for('static', filename='lab9/' + image) }}" alt="Подарок">
+        <img src="{{ url_for('static', filename='lab9/ded.png') }}" alt="Дед Мороз">
+    </div>
+    <a href="/lab9/reset" class="main-button">Сбросить и начать заново</a>
+{% endblock %}
